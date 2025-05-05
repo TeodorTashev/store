@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продукт - Ethnobrodery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="category.css">
+    <style>
+        .product-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .product-image-large {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .product-image-large img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .product-title {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        
+        .product-description {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+        
+        .size-selector {
+            margin-bottom: 1.5rem;
+        }
+        
+        .size-selector h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .color-selector {
+            margin-bottom: 1rem;
+        }
+        
+        .color-selector h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .colors {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .color-btn {
+            border: 1px solid #ddd;
+            background: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        
+        .color-btn:hover {
+            border-color: var(--primary-green);
+        }
+        
+        .color-btn.selected {
+            background-color: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+        
+        .sizes {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .size-btn {
+            border: 1px solid #ddd;
+            background: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        
+        .size-btn:hover {
+            border-color: var(--primary-green);
+        }
+        
+        .size-btn.selected {
+            background-color: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+        
+        .add-to-cart-large {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-weight: 500;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .add-to-cart-large.enabled {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .add-to-cart-large:hover {
+            background-color: #b01e0f;
+        }
+        
+        .error-message {
+            color: var(--primary-red);
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .error-message.visible {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .product-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Product Details -->
+    <main class="product-container">
+        <div class="product-image-large">
+            <img id="productImage" src="" alt="Продукт">
+        </div>
+        <div class="product-info">
+            <h1 id="productTitle" class="product-title"></h1>
+            <p id="productDescription" class="product-description"></p>
+            <p id="productPrice" class="product-price"></p>
+            
+            <div class="size-selector">
+                <h3>Избери размер:</h3>
+                <div id="colorSelector" class="color-selector" style="display: none;">
+                    <h4>Избери цвят:</h4>
+                    <div class="colors">
+                        <!-- Colors will be populated dynamically -->
+                    </div>
+                </div>
+                <div id="sizeOptions" class="sizes">
+                    <!-- Sizes will be populated dynamically -->
+                </div>
+                <p class="error-message" id="sizeError">Моля, изберете размер.</p>
+            </div>
+            
+            <button id="addToCartBtn" class="add-to-cart-large">Сложи в количка</button>
+        </div>
+    </main>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productImage = urlParams.get('image');
+        const productName = urlParams.get('name');
+        const productDesc = urlParams.get('desc');
+        const productPrice = urlParams.get('price');
+        const productCategory = urlParams.get('category');
+        const productSizes = urlParams.get('sizes');
+        
+        // Set product details
+        document.getElementById('productImage').src = productImage || '';
+        document.getElementById('productTitle').textContent = productName || 'Продукт';
+        document.getElementById('productDescription').textContent = productDesc || 'Описание на продукта';
+        document.getElementById('productPrice').textContent = productPrice ? productPrice + '.00 лв.' : '0.00 лв.';
+        
+        // Handle size selection
+        const sizeOptions = document.getElementById('sizeOptions');
+        const colorSelector = document.getElementById('colorSelector');
+        const addToCartBtn = document.getElementById('addToCartBtn');
+        const sizeError = document.getElementById('sizeError');
+        let selectedSize = null;
+        let selectedColor = null;
+        
+        if (productSizes) {
+            const sizes = productSizes.split('|');
+            
+            if (sizes.length > 1) {
+                // Show color selector for products with multiple colors
+                colorSelector.style.display = 'block';
+                
+                // Add color selection buttons
+                const colors = document.querySelector('.colors');
+                sizes.forEach(colorOption => {
+                    const [color, sizeList] = colorOption.split(':');
+                    const colorBtn = document.createElement('button');
+                    colorBtn.className = 'color-btn';
+                    colorBtn.textContent = color;
+                    colorBtn.dataset.color = color;
+                    colorBtn.dataset.sizes = sizeList;
+                    colorBtn.addEventListener('click', () => {
+                        document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('selected'));
+                        colorBtn.classList.add('selected');
+                        selectedColor = color;
+                        updateSizeOptions(sizeList);
+                    });
+                    colors.appendChild(colorBtn);
+                });
+            } else {
+                // Single color product
+                const [color, sizeList] = sizes[0].split(':');
+                selectedColor = color;
+                updateSizeOptions(sizeList);
+            }
+        }
+        
+        function updateSizeOptions(sizeList) {
+            sizeOptions.innerHTML = '';
+            const sizes = sizeList.split(',');
+            
+            sizes.forEach(size => {
+                const sizeBtn = document.createElement('button');
+                sizeBtn.className = 'size-btn';
+                sizeBtn.textContent = size;
+                sizeBtn.dataset.size = size;
+                sizeBtn.addEventListener('click', () => {
+                    document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('selected'));
+                    sizeBtn.classList.add('selected');
+                    selectedSize = size;
+                    sizeError.classList.remove('visible');
+                addToCartBtn.classList.add('enabled');
+                });
+                sizeOptions.appendChild(sizeBtn);
+            });
+        }
+        
+        // Add to cart functionality
+        addToCartBtn.addEventListener('click', () => {
+            if (!selectedSize) {
+                sizeError.classList.add('visible');
+                return;
+            }
+            
+            // Here you would typically add the item to the cart
+            // For now, we'll just show an alert
+            const message = selectedColor ? 
+                `Добавено в количката: ${productName} - ${selectedColor}, ${selectedSize}` :
+                `Добавено в количката: ${productName} - ${selectedSize}`;
+            
+            alert(message);
+        });
+    </script>
+</body>
+</html> 

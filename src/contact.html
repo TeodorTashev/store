@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти - Ethnobrodery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .contact-section h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-section p {
+            margin: 10px 0;
+            color: white;
+        }
+
+        .links-section h2 {
+            color: #00966e;
+        }
+
+        .links-section a {
+            color: #00966e;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .social-section h2 {
+            color: red;
+        }
+
+        .social-section a {
+            color: red;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded here -->
+    <div id="nav-placeholder"></div>
+
+    <div class="content-wrapper">
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-section">
+                <h2>Контактна информация</h2>
+                <p><strong>Телефон:</strong> 0885 339138</p>
+                <p><strong>Имейл:</strong> etnobroderybg@gmail.com</p>
+            </div>
+
+            <!-- Useful Links -->
+            <div class="links-section">
+                <h2>Полезни връзки</h2>
+                <a href="#">Политика за поверителност</a>
+                <a href="#">Контакти</a>
+                <a href="#">За нас</a>
+            </div>
+
+            <!-- Social Media -->
+            <div class="social-section">
+                <h2>Последвайте ни</h2>
+                <a href="https://www.facebook.com/EthnoBrodery/" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/ethnobrodery/" target="_blank">Instagram</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © 2025 Ethnobrodery. Всички права запазени.
+        </div>
+    </div>
+
+    <script>
+        // Load navigation
+        fetch('nav-template.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html> 

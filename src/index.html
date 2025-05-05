@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Ethnobrodery - Български етно дизайни</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        /* Slider styles */
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 850px;
+            object-fit: cover;
+            object-position: center 35%;
+            background: #f5f5f5;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            color: #000;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .slide-content h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        .slider-nav button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .slider-nav button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        /* Categories grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50; /* Changed to a more suitable dark blue-gray */
+            color: var(--text-light);
+            padding: 2rem 5%;
+            margin-top: 3rem;
+        }
+        
+        /* Slider bullets */
+        .slider-bullets {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 1px;
+            z-index: 2;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .bullet {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .bullet.active {
+            background: rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar">
+        <div class="container">
+            <a class="logo" href="/">
+                <img src="images/vs/logo1.png" alt="Ethnobrodery Logo" />
+                <span class="store-name">Ethnobrodery</span>
+                </a>
+
+            <ul class="menu">
+                <li><a href="index.html">Начало</a></li>
+                <li><a href="products/tshirts.html">Тениски</a></li>
+                <li><a href="products/sweatshirts.html">Суичъри</a></li>
+                <li><a href="products/kids.html">Детски дрехи</a></li>
+                <li><a href="products/accessories.html">Аксесоари</a></li>
+                <li><a href="#contact">Контакти</a></li>
+            </ul>
+            </div>
+        </nav>
+
+    <!-- Main Image Slider -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="../images/parva/firstpage1.jpg" alt="Етно облекло">
+                <div class="slide-content">
+                    <h2>Традиционни Български Мотиви</h2>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="../images/parva/firstpage3.jpg" alt="Етно облекло">
+                <div class="slide-content">
+                    <h2>Автентични Дизайни</h2>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="../images/parva/firstpage4.jpg" alt="Етно облекло">
+                <div class="slide-content">
+                    <h2>Съвременна Интерпретация</h2>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="../images/parva/firstpage5.jpg" alt="Етно облекло">
+                <div class="slide-content">
+                    <h2>Българска Идентичност</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-nav">
+            <button id="prev-btn">&lt;</button>
+            <button id="next-btn">&gt;</button>
+        </div>
+        
+        <div class="slider-bullets">
+            <div class="bullet active" data-index="0"></div>
+            <div class="bullet" data-index="2"></div>
+            <div class="bullet" data-index="3"></div>
+            <div class="bullet" data-index="4"></div>
+        </div>
+    </div>
+
+    <!-- Tagline -->
+    <div class="tagline" style="padding-top: 15px; padding-bottom: 5px;">
+        <h2>Открийте красотата на българските мотиви чрез нашите ръчно бродирани облекла</h2>
+    </div>
+
+    <!-- Main Content - Category Grid -->
+    <main class="container">
+        <div class="category-grid">
+            <div class="category-item">
+                <a href="products/tshirts.html" data-navlink>
+                    <div class="category-image">
+                        <img src="../images/parva/MainT.jpg" alt="Тениски">
+                        <div class="category-title">
+                            <h3>Тениски</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="category-item">
+                <a href="products/sweatshirts.html" data-navlink>
+                    <div class="category-image">
+                        <img src="../images/parva/MainH.jpg" alt="Суичъри">
+                        <div class="category-title">
+                            <h3>Суичъри</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="category-item">
+                <a href="products/kids.html" data-navlink>
+                    <div class="category-image">
+                        <img src="../images/parva/MainC.png" alt="Детски дрехи">
+                        <div class="category-title">
+                            <h3>Детски дрехи</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="category-item">
+                <a href="products/accessories.html" data-navlink>
+                    <div class="category-image">
+                        <img src="../images/parva/MainA.jpg" alt="Аксесуари">
+                        <div class="category-title">
+                            <h3>Аксесуари</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Top Products Section -->
+    <section class="top-products" style="max-width:1300px;margin:3rem auto 0 auto;padding:0 0.5rem;">
+      <h2 style="text-align:center;color:#00966e;margin-bottom:2rem;transition:all 0.3s ease;display:inline-block;cursor:pointer;padding:0.5rem 1.5rem;border-radius:8px;" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 5px 15px rgba(0,150,110,0.2)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none';">Топ продукти</h2>
+      
+      <div style="display:flex;flex-wrap:nowrap;justify-content:space-between;gap:0.5rem;">
+        <div class="product-card" style="width:17%;min-width:160px;transition:all 0.3s ease;cursor:pointer;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 5px 15px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none';">
+          <img src="images/deca/4 тениска 35лв.jpg" alt="Детска тениска 4" style="width:100%;height:280px;object-fit:cover;border-radius:8px;">
+          <h3 style="margin:0.7rem 0 0.3rem 0;font-size:1rem;">Детска тениска 4</h3>
+          <p style="font-weight:bold;color:#d62612;margin:0 0 0.3rem 0;">35.00 лв.</p>
+          <a href="products/kids.html" class="buy-btn" style="display:inline-block;margin-top:0.3rem;padding:0.4rem 1.2rem;background:#00966e;color:#fff;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95rem;">Купи</a>
+        </div>
+        <div class="product-card" style="width:17%;min-width:160px;transition:all 0.3s ease;cursor:pointer;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 5px 15px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none';">
+          <img src="images/tenishki/10 тениска 40лв.jpg" alt="Тениска с шевица 10" style="width:100%;height:280px;object-fit:cover;border-radius:8px;">
+          <h3 style="margin:0.7rem 0 0.3rem 0;font-size:1rem;">Тениска с шевица 10</h3>
+          <p style="font-weight:bold;color:#d62612;margin:0 0 0.3rem 0;">40.00 лв.</p>
+          <a href="products/tshirts.html" class="buy-btn" style="display:inline-block;margin-top:0.3rem;padding:0.4rem 1.2rem;background:#00966e;color:#fff;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95rem;">Купи</a>
+        </div>
+        <div class="product-card" style="width:17%;min-width:160px;transition:all 0.3s ease;cursor:pointer;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 5px 15px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none';">
+          <img src="images/tenishki/30 тениска 45лв.jpg" alt="Тениска с шевица 30" style="width:100%;height:280px;object-fit:cover;border-radius:8px;">
+          <h3 style="margin:0.7rem 0 0.3rem 0;font-size:1rem;">Тениска с шевица 30</h3>
+          <p style="font-weight:bold;color:#d62612;margin:0 0 0.3rem 0;">45.00 лв.</p>
+          <a href="products/tshirts.html" class="buy-btn" style="display:inline-block;margin-top:0.3rem;padding:0.4rem 1.2rem;background:#00966e;color:#fff;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95rem;">Купи</a>
+        </div>
+        <div class="product-card" style="width:17%;min-width:160px;transition:all 0.3s ease;cursor:pointer;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 5px 15px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none';"">
+          <img src="images/suichari/суитшърт с цип 80лв.jpg" alt="Мъжки суитшърт с цип - зелен" style="width:100%;height:280px;object-fit:cover;border-radius:8px;">
+          <h3 style="margin:0.7rem 0 0.3rem 0;font-size:1rem;">Мъжки суитшърт с цип - зелен</h3>
+          <p style="font-weight:bold;color:#d62612;margin:0 0 0.3rem 0;">80.00 лв.</p>
+          <a href="products/sweatshirts.html" class="buy-btn" style="display:inline-block;margin-top:0.3rem;padding:0.4rem 1.2rem;background:#00966e;color:#fff;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95rem;">Купи</a>
+        </div>
+        <div class="product-card" style="width:17%;min-width:160px;transition:all 0.3s ease;cursor:pointer;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 5px 15px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none';"">
+          <img src="images/deca/детски суитшърт 1 с цип и качулка 65лв.jpg" alt="Детски суитшърт 1" style="width:100%;height:280px;object-fit:cover;border-radius:8px;">
+          <h3 style="margin:0.7rem 0 0.3rem 0;font-size:1rem;">Детски суитшърт 1</h3>
+          <p style="font-weight:bold;color:#d62612;margin:0 0 0.3rem 0;">65.00 лв.</p>
+          <a href="products/kids.html" class="buy-btn" style="display:inline-block;margin-top:0.3rem;padding:0.4rem 1.2rem;background:#00966e;color:#fff;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95rem;">Купи</a>
+        </div>
+        <div class="product-card" style="width:17%;min-width:160px;transition:all 0.3s ease;cursor:pointer;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 5px 15px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none';"">
+          <img src="images/aksesuari/18лв.jpg" alt="Аксесоар" style="width:100%;height:280px;object-fit:cover;border-radius:8px;">
+          <h3 style="margin:0.7rem 0 0.3rem 0;font-size:1rem;">Аксесоар</h3>
+          <p style="font-weight:bold;color:#d62612;margin:0 0 0.3rem 0;">18.00 лв.</p>
+          <a href="products/accessories.html" class="buy-btn" style="display:inline-block;margin-top:0.3rem;padding:0.4rem 1.2rem;background:#00966e;color:#fff;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95rem;">Купи</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us" style="max-width:1200px;margin:4rem auto 0 auto;display:flex;align-items:center;gap:3rem;padding:0 1rem 3rem 1rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:320px;max-width:500px;">
+        <img src="images/parva/firstpage3.jpg" alt="About Ethnobrodery" style="width:100%;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+      </div>
+      <div style="flex:2;min-width:320px;">
+        <h2 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:2rem;text-align:left;margin-bottom:1rem;">За Ethnobrodery</h2>
+        <p style="font-size:1.1rem;line-height:1.7;color:#444;margin-bottom:2.5rem;max-width:600px;">
+            Ethnobrodery е създаден с много ентусиазъм и любов към българските традиции. Бродирането го правим машинно! Стремим се да се отличаваме, като предлагаме уникални ръчно бродирани дрехи и аксесоари, които няма да намерите другаде. Подбираме внимателно материалите, с които работим, за да получите най-добрите продукти на най-добра цена! 
+        </p>
+        <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+          <div style="flex:1;min-width:120px;text-align:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/189/189792.png" alt="Бърза доставка" style="width:48px;height:48px;margin-bottom:0.5rem;">
+            <div style="font-weight:600;color:#00966e;">Бърза доставка</div>
+          </div>
+          <div style="flex:1;min-width:120px;text-align:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Сигурно плащане" style="width:48px;height:48px;margin-bottom:0.5rem;">
+            <div style="font-weight:600;color:#00966e;">Сигурно плащане</div>
+          </div>
+          <div style="flex:1;min-width:120px;text-align:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190406.png" alt="Опция преглед" style="width:48px;height:48px;margin-bottom:0.5rem;">
+            <div style="font-weight:600;color:#00966e;">Опция преглед</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+        // Slider functionality
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const bullets = document.querySelectorAll('.bullet');
+        
+        let currentSlide = 0;
+        const slideCount = slides.length;
+        let isAnimating = false;
+        
+        // Initialize slider
+        function updateSlider(smooth = true) {
+            if (smooth) {
+                slider.style.transition = 'transform 0.7s cubic-bezier(0.77, 0, 0.175, 1)';
+            } else {
+                slider.style.transition = 'none';
+            }
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update bullets
+            bullets.forEach((bullet, index) => {
+                if (index === currentSlide) {
+                    bullet.classList.add('active');
+                } else {
+                    bullet.classList.remove('active');
+                }
+            });
+        }
+        
+        // Next slide
+        function nextSlide() {
+            if (isAnimating) return;
+            isAnimating = true;
+            if (currentSlide === slideCount - 1) {
+                updateSlider(true);
+                setTimeout(() => {
+                    currentSlide = 0;
+                    updateSlider(false);
+                    isAnimating = false;
+                }, 700);
+            } else {
+                currentSlide++;
+                updateSlider(true);
+                setTimeout(() => { isAnimating = false; }, 700);
+            }
+        }
+        
+        // Previous slide
+        function prevSlide() {
+            if (isAnimating) return;
+            isAnimating = true;
+            if (currentSlide === 0) {
+                updateSlider(true);
+                setTimeout(() => {
+                    currentSlide = slideCount - 1;
+                    updateSlider(false);
+                    isAnimating = false;
+                }, 700);
+            } else {
+                currentSlide--;
+                updateSlider(true);
+                setTimeout(() => { isAnimating = false; }, 700);
+            }
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Bullet navigation
+        bullets.forEach(bullet => {
+            bullet.addEventListener('click', function() {
+                currentSlide = parseInt(this.getAttribute('data-index'));
+                updateSlider();
+            });
+        });
+        
+        // Auto slide - change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('navbar--scrolled');
+            } else {
+                nav.classList.remove('navbar--scrolled');
+            }
+        });
+    </script>
+
+    <!-- Footer will be loaded via JavaScript -->
+    <div id="footer-placeholder"></div>
+    <script src="footer.js"></script>
+</body>
+</html> 

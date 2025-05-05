@@ -1,0 +1,30 @@
+<!-- Navigation -->
+<nav id="mainNav" class="navbar">
+    <div class="container">
+        <a class="logo" href="index.html">
+            <img src="images/vs/logo1.png" alt="Ethnobrodery Logo" />
+            <span class="store-name">Ethnobrodery</span>
+        </a>
+
+        <ul class="menu">
+            <li><a href="index.html">Начало</a></li>
+            <li><a href="Тениски.html">Тениски</a></li>
+            <li><a href="Суичъри.html">Суичъри</a></li>
+            <li><a href="Детски_дрехи.html">Детски дрехи</a></li>
+            <li><a href="Аксесуари.html">Аксесоари</a></li>
+            <li><a href="contact.html">Контакти</a></li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+    // Navigation scroll effect
+    window.addEventListener('scroll', function() {
+        const nav = document.getElementById('mainNav');
+        if (window.scrollY > 50) {
+            nav.classList.add('navbar--scrolled');
+        } else {
+            nav.classList.remove('navbar--scrolled');
+        }
+    });
+</script> 

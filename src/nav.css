@@ -1,0 +1,307 @@
+/* Import cool Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+/* Default: fully transparent */
+#mainNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .5rem 0;
+    background: transparent; /* Removed the 15% opacity background */
+    backdrop-filter: blur(7px); /* Added light blur */
+    transition: background-color .3s ease,
+                backdrop-filter .3s ease,
+                box-shadow .3s ease;
+    z-index: 999;
+    height: 60px;
+}
+
+/* After any scroll: frosted white w/ 5% emerald tint */
+#mainNav.navbar--scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 1px 8px rgba(0,0,0,.06);
+}
+
+/* Tiny polish */
+#mainNav .menu a {
+    color: black;
+    font-size: 1.15rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 5px;
+    text-shadow: 8px 4px 10px rgba(0, 0, 0, 0.3); /* Increased shadow */
+    font-family: 'Comfortaa', cursive;
+    letter-spacing: 0.5px;
+}
+
+#mainNav .menu a:hover {
+    opacity: 0.8;
+}
+
+/* Bulgarian flag colors on hover */
+#mainNav .menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, 
+        #f0f0f0 0%, 
+        #f0f0f0 32.5%, 
+        #00966e 32.5%, 
+        #00966e 34%, 
+        #009e72 34%, 
+        #009e72 65.5%, 
+        #d62612 65.5%, 
+        #d62612 67%, 
+        #e63c2a 67%, 
+        #e63c2a 100%
+    );
+    transition: width 0.3s ease;
+}
+
+#mainNav .menu a:hover::after {
+    width: 100%;
+}
+
+body {
+    scroll-padding-top: calc(40px + 1rem); /* avoid anchor clip-off */
+}
+
+/* Additional styles for the navigation */
+#mainNav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 20px;
+}
+
+#mainNav .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 0.2rem;
+    margin-left: 30px;
+}
+
+#mainNav .logo img {
+    height: 100px;
+    width: auto;
+}
+
+#mainNav .store-name {
+    color: #00966e;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-left: -0.15rem;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+}
+
+#mainNav .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    margin-right: 10px;
+}
+
+/* Hamburger Menu Button */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Hide mobile cart by default */
+.mobile-cart-container {
+    display: none;
+}
+
+/* Shopping Cart Icon Styles */
+.cart-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+    background-color: rgba(0, 150, 110, 0.1);
+}
+
+.cart-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: #333;
+    stroke-width: 2px;
+}
+
+.cart-icon.highlight {
+    animation: cartHighlight 0.6s ease;
+}
+
+@keyframes cartHighlight {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.2); background-color: rgba(214, 38, 18, 0.2); }
+    50% { transform: scale(1.1); background-color: rgba(214, 38, 18, 0.1); }
+    100% { transform: scale(1); background-color: transparent; }
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #d62612;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    animation: popIn 0.3s ease-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border: 2px solid white;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+    /* Increase navbar height on mobile */
+    #mainNav {
+        height: 90px;
+        padding: 0.8rem 0;
+        background: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Rearrange navbar for mobile */
+    #mainNav .container {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        padding: 0 10px;
+        height: 100%;
+    }
+    
+    /* Move hamburger to the left */
+    .hamburger {
+        display: block;
+        margin-right: 0;
+        grid-column: 1;
+        order: 1;
+        z-index: 1001;
+    }
+    
+    /* Center the logo */
+    #mainNav .logo {
+        margin-left: 0;
+        justify-content: center;
+        grid-column: 2;
+        order: 2;
+    }
+    
+    /* Show mobile cart on the right */
+    .mobile-cart-container {
+        grid-column: 3;
+        order: 3;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    /* Hide desktop cart in mobile view */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    #mainNav .logo img {
+        height: 80px;
+    }
+    
+    /* Sliding menu panel */
+    #mainNav .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        margin: 0;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #mainNav .menu.menu-open {
+        right: 0;
+    }
+
+    #mainNav .menu li {
+        margin: 15px 0;
+    }
+
+    #mainNav .menu a {
+        font-size: 1.2rem;
+        display: block;
+        padding: 10px 0;
+    }
+
+    /* Hamburger animation */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+} 
