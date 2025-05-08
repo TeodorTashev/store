@@ -14,7 +14,11 @@ const Checkout = () => {
         lastName: '',
         phone: '',
         deliveryMethod: 'address',
-        termsAccepted: false
+        termsAccepted: false,
+        address: '',
+        addressDetails: '',
+        postalCode: '',
+        city: ''
     });
     const [errors, setErrors] = useState({});
 
@@ -236,40 +240,54 @@ const Checkout = () => {
                             </div>
                         </div>
 
-                        {formData.deliveryMethod === 'address' && (
+                        <>
                             <div className="form-group">
-                                <label htmlFor="city">Населено място *</label>
-                                <select id="city" name="city" onChange={handleChange} defaultValue="">
-                                    <option value="" disabled>Изберете населено място</option>
-                                    <option value="София">София</option>
-                                    <option value="Пловдив">Пловдив</option>
-                                    <option value="Варна">Варна</option>
-                                    <option value="Бургас">Бургас</option>
-                                </select>
+                                <label htmlFor="address">Адрес/име на офис *</label>
+                                <input
+                                    type="text"
+                                    id="address"
+                                    name="address"
+                                    placeholder="Адрес или име на офис"
+                                    value={formData.address}
+                                    onChange={handleChange}
+                                />
                             </div>
-                        )}
-
-                        {formData.deliveryMethod === 'speedy' && (
                             <div className="form-group">
-                                <label htmlFor="speedyOffice">Офис на Спиди *</label>
-                                <select id="speedyOffice" name="speedyOffice" onChange={handleChange} defaultValue="">
-                                    <option value="" disabled>Изберете офис</option>
-                                    <option value="office1">Офис 1</option>
-                                    <option value="office2">Офис 2</option>
-                                </select>
+                                <label htmlFor="addressDetails">Етаж, апартамент и т.н. (незадължително)</label>
+                                <input
+                                    type="text"
+                                    id="addressDetails"
+                                    name="addressDetails"
+                                    placeholder="Етаж, апартамент и т.н. (по желание)"
+                                    value={formData.addressDetails}
+                                    onChange={handleChange}
+                                />
                             </div>
-                        )}
-
-                        {formData.deliveryMethod === 'ekont' && (
-                            <div className="form-group">
-                                <label htmlFor="ekontOffice">Офис на Еконт *</label>
-                                <select id="ekontOffice" name="ekontOffice" onChange={handleChange} defaultValue="">
-                                    <option value="" disabled>Изберете офис</option>
-                                    <option value="office1">Офис 1</option>
-                                    <option value="office2">Офис 2</option>
-                                </select>
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="postalCode">Пощенски код *</label>
+                                    <input
+                                        type="text"
+                                        id="postalCode"
+                                        name="postalCode"
+                                        placeholder="Пощенски код"
+                                        value={formData.postalCode}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="city">Град *</label>
+                                    <input
+                                        type="text"
+                                        id="city"
+                                        name="city"
+                                        placeholder="Град"
+                                        value={formData.city}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
-                        )}
+                        </>
                     </div>
                     
                     <div className="form-section">
