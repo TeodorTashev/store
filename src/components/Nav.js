@@ -10,6 +10,8 @@ function Nav() {
     const [isHighlighted, setIsHighlighted] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const prevCountRef = useRef(cartCount);
+    const menuRef = useRef(null);
+    const hamburgerRef = useRef(null);
 
     useEffect(() => {
         // If cart count increased, highlight the cart icon
@@ -36,6 +38,24 @@ function Nav() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            // Only handle clicks on mobile
+            if (window.innerWidth <= 768) {
+                // Check if click is outside menu and hamburger button
+                if (menuRef.current && 
+                    !menuRef.current.contains(event.target) && 
+                    hamburgerRef.current && 
+                    !hamburgerRef.current.contains(event.target)) {
+                    setIsMenuOpen(false);
+                }
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -43,7 +63,12 @@ function Nav() {
     return (
         <nav id="mainNav" className="navbar">
             <div className="container">
-                <button className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label="Toggle menu">
+                <button 
+                    ref={hamburgerRef}
+                    className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
+                    onClick={toggleMenu} 
+                    aria-label="Toggle menu"
+                >
                     <span></span>
                     <span></span>
                     <span></span>
@@ -65,7 +90,7 @@ function Nav() {
                     </Link>
                 </div>
 
-                <ul className={`menu ${isMenuOpen ? 'menu-open' : ''}`}>
+                <ul ref={menuRef} className={`menu ${isMenuOpen ? 'menu-open' : ''}`}>
                     <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Начало</Link></li>
                     <li><Link to="/tshirts" onClick={() => setIsMenuOpen(false)}>Тениски</Link></li>
                     <li><Link to="/sweatshirts" onClick={() => setIsMenuOpen(false)}>Суичъри</Link></li>

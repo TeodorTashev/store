@@ -521,6 +521,125 @@
     .tshirts-page, .sweatshirts-page, .kids-page, .accessories-page {
         padding-top: 70px;
     }
+    
+    .mobile-details-btn {
+        width: 100%;
+        background: #00966e;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 0.8rem 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .mobile-details-btn:active {
+        background: #007a5a;
+    }
+    .mobile-details-modal {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.35);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.2s;
+    }
+    .mobile-details-content {
+        background: #fff;
+        border-radius: 18px;
+        padding: 2rem 1.2rem 1.2rem 1.2rem;
+        width: 90vw;
+        max-width: 400px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        position: relative;
+        text-align: left;
+    }
+    .close-mobile-details {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #333;
+        cursor: pointer;
+        z-index: 10;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .mobile-details-content.horizontal-card {
+        padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+        min-width: 0;
+        max-width: 370px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+        overflow: hidden;
+    }
+    .mobile-details-row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+        min-width: 0;
+    }
+    .mobile-details-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        flex-shrink: 0;
+        background: #f7f7f7;
+    }
+    .mobile-details-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0.3rem;
+        min-width: 0;
+        flex: 1;
+    }
+    .mobile-details-title {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #222;
+        margin-bottom: 0.2rem;
+        line-height: 1.2;
+        word-break: break-word;
+        max-width: 170px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .mobile-details-price {
+        color: #d62612;
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 0.2rem;
+    }
+    .mobile-details-qty,
+    .mobile-details-color,
+    .mobile-details-size {
+        font-size: 0.98rem;
+        color: #444;
+        margin-bottom: 0.1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .mobile-details-modal {
+        overflow-y: auto;
+    }
 }
 
 /* Responsive Styles */

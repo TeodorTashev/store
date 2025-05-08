@@ -53,7 +53,7 @@ const Kids = () => {
                 image: product.image,
                 title: product.title,
                 price: product.price,
-                description: 'Качествена детска дреха с традиционни български мотиви. Изработена от мек, приятен за детската кожа памук.'
+                description: 'Качествена детска дреха с традиционни български мотиви. Изработена от мек, приятен за детската кожа памук. Бродирането го правим машинно!'
             }
         });
     };
@@ -70,7 +70,15 @@ const Kids = () => {
                         <div className="product-info">
                             <h3>{product.title}</h3>
                             <p className="price">{product.price.toFixed(2)} лв.</p>
-                            <a href="#" className="buy-btn" onClick={(e) => e.stopPropagation()}>Купи</a>
+                            <button 
+                                className="buy-btn"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleProductClick(product);
+                                }}
+                            >
+                                Купи
+                            </button>
                         </div>
                     </div>
                 ))}

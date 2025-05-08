@@ -21,6 +21,8 @@ const TshirtDetails = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
+    const isMobile = () => window.innerWidth <= 768;
+
     useEffect(() => {
         if (!location.state) {
             navigate('/tshirts');

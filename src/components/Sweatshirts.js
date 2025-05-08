@@ -68,13 +68,15 @@ const Sweatshirts = () => {
                         <div className="product-info">
                             <h3>{sweatshirt.title}</h3>
                             <p className="price">{sweatshirt.price.toFixed(2)} лв.</p>
-                            <a 
-                                href="#" 
+                            <button 
                                 className="buy-btn"
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleProductClick(sweatshirt);
+                                }}
                             >
                                 Купи
-                            </a>
+                            </button>
                         </div>
                     </div>
                 ))}

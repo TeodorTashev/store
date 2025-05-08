@@ -74,7 +74,7 @@ const Tshirts = () => {
                 image: tshirt.image,
                 title: tshirt.title,
                 price: tshirt.price,
-                description: 'Памучна тениска с традиционни български мотиви. Високо качество, издържа на много пране, не изгубва цвета си.'
+                description: 'Памучна тениска с традиционни български мотиви. Високо качество не изгубва цвета си. Бродирането го правим машинно!'
             }
         });
     };
@@ -92,7 +92,15 @@ const Tshirts = () => {
                         <div className="product-info">
                             <h3>{tshirt.title}</h3>
                             <p className="price">{tshirt.price.toFixed(2)} лв.</p>
-                            <a href="#" className="buy-btn" onClick={(e) => e.stopPropagation()}>Купи</a>
+                            <button 
+                                className="buy-btn" 
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleProductClick(tshirt);
+                                }}
+                            >
+                                Купи
+                            </button>
                         </div>
                     </div>
                 ))}

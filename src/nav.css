@@ -250,6 +250,7 @@ body {
         order: 3;
         display: flex;
         justify-content: flex-end;
+        padding-right: 28px;
     }
     
     /* Hide desktop cart in mobile view */
@@ -303,5 +304,13 @@ body {
 
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .mobile-cart-container .cart-count {
+        right: 30px;
+        top: 20px;
+        min-width: 26px;
+        padding: 0 7px;
+        font-size: 1rem;
     }
 } 
