@@ -1,0 +1,23 @@
+/* Force background colors to be white/light */
+body, html {
+    background-color: #ffffff !important;
+}
+
+.slider-container, 
+.slide, 
+.slide img,
+#root,
+#root > div,
+.loading-container {
+    background-color: #ffffff !important;
+}
+
+/* Ensure the navbar wrapper never gets a forced white background */
+#mainNav .container {
+    background-color: transparent !important;
+}
+
+/* Ensure placeholder backgrounds are light */
+.lazy-image-placeholder {
+    background-color: #f0f0f0 !important;
+}
